@@ -1,4 +1,9 @@
-# vue-desktop
+# Vue + Electron
+
+Multi-platform desktop application built with electron and vue.js.
+
+## Screenshots
+![Project screenshot]('screenshot.png')
 
 ## Project setup
 ```
@@ -7,18 +12,10 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm run electron:serve
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+npm run electron:build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
