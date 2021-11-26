@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="d-flex my-3">
+      <button class="btn btn-primary rounded-0">Save File</button>
+      <button class="btn btn-warning rounded-0 ms-2">Load File</button>
+    </div>
+    <textarea class="rounded" placeholder="Start typing..."></textarea>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+const { clipboard } = require("electron");
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: {},
+  methods: {
+    copyText() {
+      clipboard.writeText("Example Text", "selection");
+    },
+  },
+  mounted() {
+    // console.log(clipboard);
+  },
+};
 </script>
 
 <style>
-#app {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+#app {
+  padding: 20px;
+}
+textarea {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  height: 80vh;
+  resize: none;
 }
 </style>
