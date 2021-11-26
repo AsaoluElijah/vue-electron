@@ -1,25 +1,55 @@
 <template>
   <div id="app">
-    <div class="d-flex my-3">
-      <button class="btn btn-primary rounded-0">Save File</button>
-      <button class="btn btn-warning rounded-0 ms-2">Load File</button>
+    <div class="container">
+      <div class="text-center">
+        <h2 class="text-center mt-5">Trending Movies 🍿</h2>
+        <p>Keep up with the hottest movies that are trending this week.</p>
+      </div>
+
+      <div class="my-4">
+        <a href="#" @click="getTrendingMovies('day')" class="mx-3 h4">
+          Trending today</a
+        >
+        <a href="#" @click="getTrendingMovies('week')" class="mx-3 h4"
+          >This week</a
+        >
+      </div>
+
+      <div class="row" v-if="movies.length > 0">
+        <div class="col-md-3" v-for="(movie, i) in movies" :key="i">
+          <movie-card :movie="movie" />
+        </div>
+      </div>
     </div>
-    <textarea class="rounded" placeholder="Start typing..."></textarea>
   </div>
 </template>
 
 <script>
-const { clipboard } = require("electron");
+import MovieCard from "./components/MovieCard.vue";
 export default {
   name: "App",
-  components: {},
+  components: {
+    MovieCard,
+  },
+  data() {
+    return {
+      movies: [],
+      apiKey: "7f7e4a31b7625e58830d55c089d2db11",
+    };
+  },
   methods: {
-    copyText() {
-      clipboard.writeText("Example Text", "selection");
+    getTrendingMovies(category) {
+      return fetch(
+        `https://api.themoviedb.org/3/trending/movie/${category}?api_key=${this.apiKey}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          this.movies = data.results;
+        });
     },
   },
   mounted() {
-    // console.log(clipboard);
+    this.getTrendingMovies("day");
   },
 };
 </script>
@@ -30,19 +60,5 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#app {
-  padding: 20px;
-}
-textarea {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  border: 1px solid #ccc;
-  padding: 10px;
-  width: 100%;
-  height: 80vh;
-  resize: none;
 }
 </style>

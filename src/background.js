@@ -15,7 +15,9 @@ async function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
-    title: "Weather App",
+    title: "Trending movies",
+    icon: "./assets/logo/icon.png",
+
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
