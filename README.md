@@ -3,7 +3,7 @@
 Multi-platform desktop application built with electron and vue.js.
 
 ## Screenshots
-![Project screenshot]('screenshot.png')
+![Project screenshot](https://raw.githubusercontent.com/AsaoluElijah/vue-electron/main/screenshot.png)
 
 ## Project setup
 ```
